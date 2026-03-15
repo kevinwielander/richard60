@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danke! 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #faf8f2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+        .check {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a9e6d, #5ab87d);
+            color: white;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #2d2d3a;
+            margin-bottom: 12px;
+        }
+        p {
+            color: #6b6b7b;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .footer {
+            margin-top: 40px;
+            color: #6b6b7b;
+            font-size: 0.85rem;
+        }
+        .footer span { color: #c9a84c; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="check">✓</div>
+        <h1>Vielen Dank, Richard!</h1>
+        <p>Deine Auswahl wurde übermittelt.<br>Mary &amp; Max und Renate &amp; Gert kümmern sich um den Rest – freu dich drauf! 🎉</p>
+    </div>
+    <div class="footer"><p>Mit <span>♥</span> von Mary &amp; Max und Renate &amp; Gert</p></div>
+</body>
+</html>

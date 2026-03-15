@@ -399,8 +399,13 @@
         </div>
 
         <div class="form-card" id="formCard">
-            <form id="rsvpForm" onsubmit="submitForm(event)">
+            <form id="rsvpForm" action="https://formsubmit.co/m.pallisch@pallisch.net" method="POST">
                 <input type="hidden" name="destination" id="hiddenDest" value="">
+                <input type="hidden" name="_subject" value="🎂 Richards 60er – Reiseziel & Verfügbarkeit">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://kevinwielander.github.io/richard60/danke.html">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="Name" value="Richard Woschitz">
 
                 <div class="form-row">
                     <div class="form-group">
@@ -418,7 +423,7 @@
                     <textarea name="anmerkungen" placeholder="Besondere Wünsche, Unverträglichkeiten, etc."></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit">Absenden ✨</button>
+                <button type="submit" class="btn-submit" onclick="return validateDest()">Absenden ✨</button>
             </form>
         </div>
 
@@ -444,33 +449,12 @@
             document.getElementById('hiddenDest').value = selectedDest;
         }
 
-        function submitForm(e) {
-            e.preventDefault();
-
+        function validateDest() {
             if (!selectedDest) {
                 alert('Bitte wähle ein Reiseziel aus! 🏨');
-                return;
+                return false;
             }
-
-            const form = document.getElementById('rsvpForm');
-            const data = new FormData(form);
-            data.set('name', 'Richard Woschitz');
-            const entries = Object.fromEntries(data.entries());
-
-            // Log to console (replace with your backend endpoint)
-            console.log('📋 Anmeldung:', JSON.stringify(entries, null, 2));
-
-            // For demo: store in localStorage
-            const submissions = JSON.parse(localStorage.getItem('richard60_rsvp') || '[]');
-            submissions.push({ ...entries, timestamp: new Date().toISOString() });
-            localStorage.setItem('richard60_rsvp', JSON.stringify(submissions));
-
-            // Show success
-            document.getElementById('formCard').style.display = 'none';
-            document.querySelector('.destinations').style.display = 'none';
-            document.querySelector('.section-title').style.display = 'none';
-            document.querySelector('.intro').style.display = 'none';
-            document.getElementById('successMsg').style.display = 'block';
+            return true;
         }
 
         // Set min date to today
