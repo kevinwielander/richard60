@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard wird 60! 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+        :root {
+            --gold: #c9a84c;
+            --gold-light: #e8d5a0;
+            --dark: #1a1a2e;
+            --darker: #12121f;
+            --cream: #faf8f2;
+            --text: #2d2d3a;
+            --text-light: #6b6b7b;
+            --white: #ffffff;
+            --success: #4a9e6d;
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 24px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 50%, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+            animation: shimmer 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-5%); }
+            100% { transform: translateX(5%); }
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 6px 20px;
+            border-radius: 50px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.15;
+        }
+
+        .hero h1 span {
+            display: block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+            margin-top: 12px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 32px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        .intro {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 48px;
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .intro strong { color: var(--text); }
+
+        /* Destination Cards */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 32px;
+            color: var(--text);
+        }
+
+        .destinations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .dest-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .dest-card.selected {
+            border-color: var(--gold);
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.25);
+        }
+
+        .dest-card.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: var(--gold);
+            color: var(--white);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .dest-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .dest-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .dest-card .dest-location {
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .dest-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .dest-card a {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .dest-card a:hover { opacity: 0.7; }
+
+        .dest-card input[type="radio"] { display: none; }
+
+        /* Form */
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 36px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .form-group label .required {
+            color: #d4534b;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 500px) {
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e0ddd5;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text);
+            background: var(--cream);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+        }
+
+        textarea { resize: vertical; min-height: 80px; }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 26, 46, 0.3);
+        }
+
+        .btn-submit:active { transform: translateY(0); }
+
+        /* Success State */
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 60px 24px;
+        }
+
+        .success-msg .check-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--success), #5ab87d);
+            color: white;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        .success-msg h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .success-msg p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 32px 24px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .footer span { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Einladung</div>
+            <h1>Richard wird <span>60!</span></h1>
+            <p class="hero-sub">Ein runder Geburtstag verdient ein besonderes Erlebnis</p>
+            <div class="divider"></div>
+        </div>
+    </header>
+
+    <main class="container" id="mainContent">
+        <p class="intro">
+            Lieber Richard,<br><br>
+            zu deinem <strong>60. Geburtstag</strong> schenken dir <strong>Mary &amp; Max</strong> sowie <strong>Renate &amp; Gert</strong>
+            ein gemeinsames Wochenende! 🎁<br><br>
+            Wähle dein <strong>Wunschziel</strong> und trage deine <strong>Verfügbarkeit</strong> ein –
+            wir kümmern uns um den Rest.
+        </p>
+
+        <h2 class="section-title">Wohin soll die Reise gehen?</h2>
+
+        <div class="destinations" id="destinations">
+            <div class="dest-card" onclick="selectDest(this, 'fasching')">
+                <input type="radio" name="destination" value="Dorfhotel Fasching" id="dest1">
+                <div class="dest-icon">🏔️</div>
+                <h3>Dorfhotel Fasching</h3>
+                <div class="dest-location">Fischbach, Steiermark</div>
+                <p>4*S Wellnesshotel inmitten der Fischbacher Alpen. Wellness, Wandern & regionale Kulinarik in familiärer Atmosphäre.</p>
+                <a href="https://www.dorfhotel-fasching.at/" target="_blank">Website ansehen →</a>
+            </div>
+
+            <div class="dest-card" onclick="selectDest(this, 'weitzer')">
+                <input type="radio" name="destination" value="Hotel Weitzer Graz" id="dest2">
+                <div class="dest-icon">🏙️</div>
+                <h3>Hotel Weitzer Graz</h3>
+                <div class="dest-location">Graz Zentrum, Steiermark</div>
+                <p>Stilvolles Stadthotel direkt an der Mur mit 201 Zimmern, Restaurant „Der Steirer" und echter Grazer Lebensart.</p>
+                <a href="https://hotelweitzer.com/" target="_blank">Website ansehen →</a>
+            </div>
+
+            <div class="dest-card" onclick="selectDest(this, 'denk')">
+                <input type="radio" name="destination" value="Hiša Denk" id="dest3">
+                <div class="dest-icon">🍷</div>
+                <h3>Hiša Denk</h3>
+                <div class="dest-location">Zgornja Kungota, Slowenien</div>
+                <p>Exquisites Gourmet-Erlebnis mit Übernachtungsmöglichkeit. Fine Dining auf höchstem Niveau unweit der steirischen Grenze.</p>
+                <a href="https://www.hisadenk.si/" target="_blank">Website ansehen →</a>
+            </div>
+        </div>
+
+        <div class="form-card" id="formCard">
+            <form id="rsvpForm" onsubmit="submitForm(event)">
+                <input type="hidden" name="destination" id="hiddenDest" value="">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Verfügbar von <span class="required">*</span></label>
+                        <input type="date" name="datum_von" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Verfügbar bis <span class="required">*</span></label>
+                        <input type="date" name="datum_bis" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Anmerkungen</label>
+                    <textarea name="anmerkungen" placeholder="Besondere Wünsche, Unverträglichkeiten, etc."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Absenden ✨</button>
+            </form>
+        </div>
+
+        <div class="success-msg" id="successMsg">
+            <div class="check-circle">✓</div>
+            <h2>Vielen Dank!</h2>
+            <p>Deine Auswahl wurde gespeichert.<br>Mary &amp; Max und Renate &amp; Gert kümmern sich um den Rest – freu dich drauf! 🎉</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Mit <span>♥</span> von Mary &amp; Max und Renate &amp; Gert</p>
+    </footer>
+
+    <script>
+        let selectedDest = '';
+
+        function selectDest(card, dest) {
+            document.querySelectorAll('.dest-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            card.querySelector('input[type="radio"]').checked = true;
+            selectedDest = card.querySelector('input[type="radio"]').value;
+            document.getElementById('hiddenDest').value = selectedDest;
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+
+            if (!selectedDest) {
+                alert('Bitte wähle ein Reiseziel aus! 🏨');
+                return;
+            }
+
+            const form = document.getElementById('rsvpForm');
+            const data = new FormData(form);
+            data.set('name', 'Richard Woschitz');
+            const entries = Object.fromEntries(data.entries());
+
+            // Log to console (replace with your backend endpoint)
+            console.log('📋 Anmeldung:', JSON.stringify(entries, null, 2));
+
+            // For demo: store in localStorage
+            const submissions = JSON.parse(localStorage.getItem('richard60_rsvp') || '[]');
+            submissions.push({ ...entries, timestamp: new Date().toISOString() });
+            localStorage.setItem('richard60_rsvp', JSON.stringify(submissions));
+
+            // Show success
+            document.getElementById('formCard').style.display = 'none';
+            document.querySelector('.destinations').style.display = 'none';
+            document.querySelector('.section-title').style.display = 'none';
+            document.querySelector('.intro').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+        }
+
+        // Set min date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.querySelector('input[name="datum_von"]').setAttribute('min', today);
+        document.querySelector('input[name="datum_bis"]').setAttribute('min', today);
+
+        // Sync date range
+        document.querySelector('input[name="datum_von"]').addEventListener('change', function() {
+            document.querySelector('input[name="datum_bis"]').setAttribute('min', this.value);
+        });
+    </script>
+</body>
+</html>
